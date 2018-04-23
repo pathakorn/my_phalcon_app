@@ -1,0 +1,94 @@
+  <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phalcon PHP Framework</title>
+    <?php echo $this->assets->outputCss('styles'); ?>    
+    <?php echo $this->assets->outputJs('scripts'); ?> 
+  </head>
+    <body id="page-top" background="https://wallpaperscraft.com/image/hong_kong_skyscrapers_night_shore_118827_1920x1080.jpg" >
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+      <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="<?php echo $this->url->getBaseUri(); ?>">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>         
+            <ul class="navbar-nav  navbar-right">     
+    <?php if($this->session->has('memberAuthen')) {?> 
+     
+   
+      <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about"><?php echo $this->session->get('memberEmail');?></a>
+     </li>
+     <li class="nav-item mx-0 mx-lg-1">
+        <a  class="btn btn-danger navbar-btn" href="authen/signOut"> Logout </a> 
+     </li>  
+    <?php } else {?>
+         
+     <li class="nav-item mx-0 mx-lg-1">
+       <a href="authen/signUp" class="btn btn-outline-info"> Sign Up </a>
+      </li>
+      <?php }?>
+  </ul></ul></div></div></nav>
+  
+
+
+  <?php echo $this->flashSession->output(); 
+ 
+
+
+  $username='';
+  $password='';
+  $rememberMe='';
+ 
+  if($this->cookies->has("username") && $this->cookies->has("password") )
+  {
+      $username=$this->cookies->get("username");
+      $password=$this->cookies->get("password");
+      $rememberMe='checked';
+  }
+?>
+  <form action="" method="post">
+  
+    <div class="form-group">
+      <label style="color:#ADFF2F">Email address</label>
+      <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="<?php if(isset($username))echo $username; ?>" required>
+    </div>
+    <div class="form-group">
+      <label style="color:#DDA0DD">Password</label>
+      <input type="password" name="password" class="form-control" id="password" placeholder="Password" value="<?php if(isset($password))echo $password; ?>" required>
+     
+    </div>
+    <div class="form-check">
+      <input type="checkbox" name="rememberMe" class="form-check-input" id="rememberMe" value="1" <?php echo $rememberMe;?>>
+ 
+      <label style="color:#778899" class="form-check-label" for="rememberMe">Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+   
+    <a href="<?php echo $this->url->getBaseUri(); ?>" class="btn btn-warning">Back</a>
+   
+  </form>
+  <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

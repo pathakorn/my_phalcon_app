@@ -1,0 +1,80 @@
+  <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phalcon PHP Framework</title>
+    <?php echo $this->assets->outputCss('styles'); ?>    
+    <?php echo $this->assets->outputJs('scripts'); ?> 
+  </head>
+    <body id="page-top" background="https://wallpaperscraft.com/image/singapore_skyscrapers_buildings_shore_night_118845_1920x1080.jpg" >
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+      <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="<?php echo $this->url->getBaseUri(); ?>">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>         
+            <ul class="navbar-nav  navbar-right">     
+    <?php if($this->session->has('memberAuthen')) {?> 
+     
+   
+      <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="profile"><?php echo $this->session->get('memberEmail');?></a>
+     </li>
+     <li class="nav-item mx-0 mx-lg-1">
+        <a  class="btn btn-danger navbar-btn" href="authen/signOut"> Logout </a> 
+     </li>  
+    <?php } else {?>
+         
+     <li class="nav-item mx-0 mx-lg-1">
+       <a href="authen/signUp" class="btn btn-outline-info"> Sign Up </a>
+      </li>
+      <?php }?>
+  </ul></ul></div></div></nav>
+  
+
+ <div class="row">
+    <div class="col-sm">     
+    </div>
+    <div class="col-sm">
+  <form action="" method="post" >
+  <input type="hidden"  name="profileId"  value="<?php echo $profile->id;?>">
+  <div class="form-group">
+    <label style="color:#33FFFF">Email address</label>
+    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email"  required >
+  </div>
+  <div class="form-group">
+    <label style="color:#00FF00">Password</label>
+    <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+  </div>
+  <div class="form-group">
+    <label style="color:#FF7F50">Firstname</label>
+    <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Firstname"  required  >
+  </div> 
+   
+  <button type="submit" class="btn btn-info">Submit</button>
+  
+  <a href="<?php echo $this->url->getBaseUri(); ?>" class="btn btn-warning">Back</a>
+
+</form>
+    </div>
+    <div class="col-sm">     
+    </div>
+  </div>
